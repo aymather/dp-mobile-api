@@ -21,6 +21,10 @@ mongoose.connect(MONGO_URI, { useNewUrlParser: true })
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
 
+app.get('/uri', (req, res) => {
+    res.send(MONGO_URI);
+})
+
 // Routes
 app.use('/', require('./routes/auth'));
 app.use('/', require('./routes/user'));
