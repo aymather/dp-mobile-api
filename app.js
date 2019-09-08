@@ -29,3 +29,5 @@ app.use('/', require('./routes/user'));
 app.listen(PORT, () => {
     console.log(`Now listening on port ${PORT}`)
 })
+
+module.exports = app;

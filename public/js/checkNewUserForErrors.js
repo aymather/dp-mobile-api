@@ -2,7 +2,7 @@ const User = require('../../config/models');
 const validator = require('email-validator');
 
 module.exports = checkNewUserForErrors = async (username, password, password1, email) => {
-    
+
     // Init
     var errors = [];
 
@@ -10,17 +10,17 @@ module.exports = checkNewUserForErrors = async (username, password, password1, e
     if(!username || !password || !password1 || !email){
         errors.push({ msg: "Make sure you fill out all fields" });
     }
-
+    
     // Check that passwords match
     if(password !== password1){
         errors.push({ msg: "Passwords do not match" });
     }
 
     // Check password length
-    if(password.length < 8){
+    if(password && password.length < 8){
         errors.push({ msg: "Password must be at least 8 characters" });
     }
-
+    
     // Check if email exists
     const existingEmail = await User.findOne({ email });
     if(existingEmail){
