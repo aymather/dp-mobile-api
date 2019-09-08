@@ -29,7 +29,11 @@ router.post('/new-user', async (req, res) => {
         // Save
         await user.save();
 
-        return res.json(user);
+        return res.json({
+            id: user.id,
+            username: user.username,
+            email: user.email
+        });
 
     } catch(e) {
         res.status(500).json({ msg: "Internal Server Error" });
